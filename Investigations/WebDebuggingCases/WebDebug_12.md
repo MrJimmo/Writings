@@ -115,7 +115,7 @@ What's with the...
 
 ...comment?
 
-This technique is often referred to as the "That ought to be enough" placer holder method...or at least that's what I call it.  And usually ends up breaking your heart somewhere own the line :o)
+This technique is often referred to as the "That ought to be enough" placer holder method...or at least that's what I call it.  And usually ends up breaking your heart somewhere down the line :o)
 
 Something else interesting to note are the...
 ```javascript
@@ -277,10 +277,11 @@ The following shows digging for the details:
 0:000> kP1
 ChildEBP RetAddr  
 0012eb58 74a7ad46 USER32!SendMessageW(
-			struct HWND__ * hwnd = 0x00110204, 
-			unsigned int message = 0x55, 
-			unsigned int wParam = 0xf03a2, 
-			long lParam = 0n3) [d:\w7rtm\windows\core\ntuser\client\cltxt.h @ 757]
+            struct HWND__ * hwnd = 0x00110204, 
+            unsigned int message = 0x55, 
+            unsigned int wParam = 0xf03a2, 
+            long lParam = 0n3) [d:\w7rtm\windows\core\ntuser\client\cltxt.h @ 757]
+
 0:000> dd esp
 0012eb5c  74a7ad46 00110204 00000055 000f03a2
 0012eb6c  00000003 00000000 0025fef0 018a002e
@@ -290,6 +291,7 @@ ChildEBP RetAddr
 0012ebac  00000060 fffd0020 0020001f 27000000
 0012ebbc  00000e00 8c82347b 0012ebe4 74a7afe9
 0012ebcc  0025fef0 000f03a2 0012edb8 000f03a2
+
 0:000> dd esp + 8
 0012eb64  00000055 000f03a2 00000003 00000000
 0012eb74  0025fef0 018a002e 000a0ec5 5e010ea4
@@ -311,7 +313,7 @@ breakpoint 0 redefined
 ```
 
 
-**NOTE:** That **poi**(@esp+2) is used to check the value at the address of esp+8. Just using esp+8 would never match because we'd be comparing 0x148 with an address, so we use poi which is the "Pointer-sized data from specified address" operator. Check out the debugger documentation for more on available directives and operators for the condition.
+**NOTE:** That **poi**(@esp+8) is used to check the value at the address of esp+8. Just using esp+8 would never match because we'd be comparing 0x148 with an address, so we use poi which is the "Pointer-sized data from specified address" operator. Check out the debugger documentation for more on available directives and operators for the condition.
 
 With that set now, I hit "g" and we break at the right spot AND at the right time:
 ```
@@ -323,10 +325,11 @@ USER32!SendMessageW:
 0:000> kP1
 ChildEBP RetAddr  
 0012e0b4 004313ea USER32!SendMessageW(
-			struct HWND__ * hwnd = 0x0015040c, 
-			unsigned int message = 0x148, 
-			unsigned int wParam = 0, 
-			long lParam = 0n3575396) [d:\w7rtm\windows\core\ntuser\client\cltxt.h @ 757]
+            struct HWND__ * hwnd = 0x0015040c, 
+            unsigned int message = 0x148, 
+            unsigned int wParam = 0, 
+            long lParam = 0n3575396) [d:\w7rtm\windows\core\ntuser\client\cltxt.h @ 757]
+
 0:000> dd 0n3575396
 00368e64  00320031 00340033 00360035 00380037
 00368e74  00300039 00320031 00340033 00360035
@@ -336,6 +339,7 @@ ChildEBP RetAddr
 00368eb4  00320031 00340033 00360035 00380037
 00368ec4  00300039 00320031 00340033 00360035
 00368ed4  00380037 00300039 00320031 00340033
+
 0:000> db 0n3575396
 00368e64  31 00 32 00 33 00 34 00-35 00 36 00 37 00 38 00  1.2.3.4.5.6.7.8.
 00368e74  39 00 30 00 31 00 32 00-33 00 34 00 35 00 36 00  9.0.1.2.3.4.5.6.
@@ -347,7 +351,9 @@ ChildEBP RetAddr
 00368ed4  37 00 38 00 39 00 30 00-31 00 32 00 33 00 34 00  7.8.9.0.1.2.3.4.
 ```
 
-And digging into the value of **langName**, using **dd 0n3575396** shows something that vaguely looks like ASCII values, and using **db** (dump bytes and ASCII chars), we can see that it looks like the memory location for **langName**. Great!
+And digging into the value of **langName**, using **dd 0n3575396** shows something that vaguely looks like ASCII values, and using **db** (dump bytes and ASCII chars), we can see that it looks like the memory location for **langName**.
+
+Great! We're now looking in the right spot.
 
 And because we're broken just before **SendMessageW** is going to execute, we just need to simply step past this call (in WinDBG just hit F10 and Shift+F11 to step out of the call).
 
@@ -422,7 +428,7 @@ I trimmed out all the unnecessary content and files, zipped it up and attached t
 
 This made for a simpler, quicker repro.
 
-If all the content was compiled in as resources, we’d be looking at using the same techniques as in Web Debugging `Case 4:  McAfee Blank Setup Window` to view the content.
+If all the content was compiled in as resources, we’d be looking at using the same techniques as in `Web Debugging Case 4:  McAfee Blank Setup Window` to view the content.
 </td>
 </tr>
 </table>
