@@ -13,7 +13,7 @@ In this case I'll go over digging into the content of a Setup program and using 
 
 **Tools / Techniques used:**
 
-- [WinDBG](http://www.microsoft.com/whdc/devtools/debugging/default.mspx) -- to set a breakpoint and watch memory
+- [WinDBG](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools) -- to set a breakpoint and watch memory
 - Spy++ ([Spyxx](http://msdn.microsoft.com/en-us/library/aa242713(VS.60).aspx)) -- to determine/confirm app is hosting trident
 - [ProcExp](http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx) -- find extracted setup files (including all the content files)
 - Text Editor -- Content inspection.
