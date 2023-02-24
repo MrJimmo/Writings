@@ -154,15 +154,14 @@ Removing the non-essential stuff, and focusing on the **orderData** value:
 +-----------------------------------------------------------------------+
 | [Edge]                                                                |
 |                                                                       |
-| **orderData**=H4sIAAAAAAAAAG3NvQrCMBQF4FcJmaUtDg4dq4sgWHR1SdK         |
-| 0vZA%2FbhOliO9ubAsW43rOdzhPOvTg%0AHJiuQskagUHzE%2BNS0ZJel4ZuKAel%2Fpp |
-| qLiJBeQf5SMVlyiNwbNTS%2BFTUc0FuoSi2O1IrJiQ5YyMx%0AroQ1LaBmHqxJp5Mi%2B |
-| 5X5Hh1Na5fw92lVfS4CYkwPVjMwUfXeu6HMcx7GrGOowWTCavp6AzFlWWss%0AAQAA%0A |
+| orderData=H4sIAAAAAAAAAG3NvQrCMBQF4FcJmaUtDg4dq4sgWHR1SdK0vZA%2FbhOli |
+| O9ubAsW43rOdzhPOvTg%0AHJiuQskagUHzE%2BNS0ZJel4ZuKAel%2FppqLiJBeQf5SMV |
+| lyiNwbNTS%2BFTUc0FuoSi2O1IrJiQ5YyMx%0AroQ1LaBmHqxJp5Mi%2B5X5Hh1Na5fw9 |
+| 2lVfS4CYkwPVjMwUfXeu6HMcx7GrGOowWTCavp6AzFlWWss%0AAQAA%0A             |
 +=======================================================================+
 | [Chrome\]                                                             |
 |                                                                       |
-| **or                                                                  |
-| derData**=H4sIAAAAAAAAAG3NvQrCMBQF4FcJmaUtDg4dq4sgWHR1SdK0vZA%2FbhOli |
+| orderData=H4sIAAAAAAAAAG3NvQrCMBQF4FcJmaUtDg4dq4sgWHR1SdK0vZA%2FbhOli |
 | O9ubAsW43rOdzhPOvTg%0D%0AHJiuQskagUHzE%2BNS0ZJel4ZuKAel%2FppqLiJBeQf5 |
 | SMVlyiNwbNTS%2BFTUc0FuoSi2O1IrJiQ5YyMx%0D%0AroQ1LaBmHqxJp5Mi%2B5X5Hh1 |
 | Na5fw92lVfS4CYkwPVjMwUfXeu6HMcx7GrGOowWTCavp6AzFlWWss%0D%0AAQAA%0D%0A |
@@ -198,6 +197,11 @@ orderData=H4sIAAAAAAAAAG
 </td>
 </tr>
 </table>
+
+NOTE: Unfortunately, I tried to hack inline HTML to highlight all the `%0A` (Edge) and `%0D%0A` (in Chrome) occurrences, but github markdown view doesn't this type of futzing.  I'm trying to do too much with Markdown :o)
+
+Here's a snip of what I was going for:
+<img src="./WebDebug_18Media/image16.png"/>
 
 With everything else pretty much the same (at least in format), this seemed significant enough to dig into.
 
