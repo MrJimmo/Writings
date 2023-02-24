@@ -201,6 +201,7 @@ orderData=H4sIAAAAAAAAAG
 NOTE: Unfortunately, I tried to hack inline HTML to highlight all the `%0A` (Edge) and `%0D%0A` (in Chrome) occurrences, but github markdown view doesn't this type of futzing.  I'm trying to do too much with Markdown :o)
 
 Here's a snip of what I was going for:
+
 <img src="./WebDebug_18Media/image16.png"/>
 
 With everything else pretty much the same (at least in format), this seemed significant enough to dig into.
